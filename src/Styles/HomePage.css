@@ -1,0 +1,99 @@
+.main {
+    background-color: #e7e0e0;
+    padding-bottom: 20px;
+    /* background-image: url('../Images/image2.jpg'); */
+}
+.navbar {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.images_gallery {
+    /* background-image: url("../Images/bg-image.jpg");
+    background-repeat: no-repeat; */
+    background-color: #e7e0e0;
+    margin-top: -21px;
+    padding-bottom: 25px;
+}
+.logo{
+    margin-top: 20px;
+}
+.links {
+    margin-top: 40px;
+}
+.loginbtn {
+    background-color: coral;
+    border: 1px solid coral;
+    border-radius: 3px;
+    text-decoration: none;
+    padding: 3px 10px;
+    margin-right: 13px;
+}
+.loginbtn a {
+    color: white;
+    text-decoration: none;
+}
+.registerbtn {
+    background-color: rgb(29, 155, 35);
+    border: 1px solid rgb(29, 155, 35);
+    border-radius: 3px;
+    padding: 3px 10px;
+}
+.registerbtn a {
+    color: white;
+    text-decoration: none;
+}
+.slider {
+    background-color: rgba(231, 237, 241, 0.89);
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+.slick-slide img {
+    margin: auto;
+    width: 300;
+    height: 300;
+}
+.image_grid1{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+}
+.image_grid2{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+    margin-top: 35px;
+}
+.card2_content {
+    padding-bottom: 36px;
+}
+.MuiCardActions-root {
+    justify-content: center;
+}
+.slick-prev {
+    left: 10% !important;
+}
+.slick-prev::before {
+    background-color: blue;
+    border-radius: 50%;
+}
+.slick-next {
+    right: 10% !important;
+}
+.slick-next::before {
+    background-color: blue;
+    border-radius: 50%;
+}
+.footer {
+    background-color: black;
+    padding: 20px 0px;
+}
+.contactbtn {
+    background-color: darkblue;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 10px;
+}

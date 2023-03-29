@@ -1,0 +1,71 @@
+.login {
+    background-color: white;
+    border-radius: 5px;
+    margin: 7%38%;
+    box-shadow: 0 0 10px #888888;
+    padding-top: 5px;
+    padding-bottom: 40px;
+}
+.login h1 {
+    background-image: linear-gradient(to right, blue, green, red, orange);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        color: transparent;
+
+}
+.footerCard{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.forgetPswd {
+    text-decoration: none;
+    margin-right: 38%;
+    font-weight: 500;
+}
+.emailLabel {
+    margin-right: 8%;
+    color: rgb(0, 140, 255);
+}
+.pswdLabel {
+    color: rgb(0, 140, 255);;
+}
+.backbtn {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.nextLink {
+    background-color: goldenrod;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.nextLink a {
+    text-decoration: none;
+    color: white;
+}
+.errormsg {
+    color: red;
+}
+.accerrormsg {
+    margin: 10px 17%;
+    color: red;
+}
+.accPara {
+    color: #888888;
+}
+.accLink a{
+    text-decoration: none;
+    font-weight: 500;
+    color: darkgreen;
+}
+.checkbox {
+    margin-right: 38%;
+    color:rgb(118, 80, 255);
+    font-weight: 500;
+    padding-bottom: 3%;
+}
