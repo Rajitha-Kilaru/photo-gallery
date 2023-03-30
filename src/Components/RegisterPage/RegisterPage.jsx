@@ -8,83 +8,73 @@ function RegisterPage() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [registerData, setRegisterData] = useState({ firstName: "", lastName: '', gender: '', qualification: '', occupation: '', dob: '', age: '', email: '', password: '', address: '' })
-    // const [registerError, setRegisterError] = 
-    const [fnameError, setFnameError] = useState('')
-    const [lnameError, setLnameError] = useState('')
-    const [genderError, setGenderError] = useState('')
-    const [qualifError, setQualifError] = useState('')
-    const [occupError, setOccupError] = useState('')
-    const [dobError, setDobError] = useState('')
-    const [addError, setAddError] = useState('')
-    const [emailError, setEmailError] = useState('')
-    const [pswdError, setPswdError] = useState('')
+    const [registerError, setRegisterError] = useState({ fnameError: "", lnameError: "", genderError: "", qualifError: "", occupError: '', dobError: "", addError: "", emailError: "", pswdError: "" })
     const months = new Date().getMonth() - new Date(registerData?.dob).getMonth()
     let years = new Date().getFullYear() - new Date(registerData?.dob).getFullYear()
     const age = months < 0 || months === 0 || new Date().getDate() < new Date(registerData?.dob).getDate() ? years-- : years
- useEffect(()=>{
-setRegisterData( {...registerData, age:age})
- },[registerData.dob])
+    useEffect(() => {
+        setRegisterData({ ...registerData, age: age })
+    }, [registerData, age])
     const handleRegisterData = (e) => {
         setRegisterData({ ...registerData, [e.target.name]: e.target.value })
     }
     const handleBlurEvent = (e) => {
-        console.log("30==",e.target)
+        console.log("30==", e.target)
         if (registerData.firstName.length && !(registerData.firstName.length > 3 && new RegExp(/^[A-Z]*$/).test(registerData.firstName))) {
-            setFnameError('Please enter valid fname in uppercase')
+            setRegisterError({...registerError, fnameError: 'Please enter valid fname in uppercase'})
         } else {
-            setFnameError('')
+            setRegisterError({...registerError, fnameError: ''})
         }
         if (registerData.lastName.length && !(registerData.lastName.length > 3 && new RegExp(/^[A-Z]*$/).test(registerData.lastName))) {
-            setLnameError('Please enter valid lname in uppercase')
+            setRegisterError({...registerError, lnameError: 'Please enter valid lname in uppercase'})
+
         } else {
-            setLnameError('')
+            setRegisterError({...registerError, lnameError: ''})
         }
         if (!registerData.gender) {
-            setGenderError('Please select a item')
+            setRegisterError({...registerError, genderError: 'Please select a item'})
+
         } else {
-            setGenderError('')
+            setRegisterError({...registerError, genderError: ''})
         }
         if (!registerData.qualification) {
-            setQualifError('Please select qualification')
+            setRegisterError({...registerError, qualifError: 'Please select qualification'})
         } else {
-            setQualifError('')
+            setRegisterError({...registerError, qualifError: ''})
         }
         if (registerData.occupation.length && !(registerData.occupation.length > 3 && new RegExp(/^[A-Z]*$/).test(registerData.occupation))) {
-            setOccupError('Please enter valid occupation')
+            setRegisterError({...registerError, occupError: 'Please enter valid occupation'})
         } else {
-            setOccupError('')
+            setRegisterError({...registerError, occupError: ''})
         }
         if (!registerData.dob) {
-            setDobError('please select your dob')
+            setRegisterError({...registerError, dobError: 'please select your dob'})
         } else {
-            setDobError('')
+            setRegisterError({...registerError, dobError: ''})
         }
         if (registerData.address.length && !(registerData.address.length > 3 && new RegExp(/^[A-Z]*$/).test(registerData.address))) {
-            setAddError('Please enter valid address')
+            setRegisterError({...registerError, addError: 'Please enter valid address'})
         } else {
-            setAddError('')
+            setRegisterError({...registerError, addError: ''})
         }
         if (new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(
             registerData.email)) {
-            setEmailError('')
+            setRegisterError({...registerError, emailError: ''})
         } else {
-            setEmailError('Please enter valid email')
+            setRegisterError({...registerError, emailError: 'Please enter valid email'})
         }
         if (new RegExp(
             '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
         ).test(registerData.password)) {
-            setPswdError('')
+            setRegisterError({...registerError, pswdError: ''})
         } else {
-            setPswdError("Please enter valid password")
+            setRegisterError({...registerError, pswdError: 'Please enter valid password'})
         }
     }
 
     const registerNextScreen = () => {
         dispatch(registrationData(registerData))
-        
-        console.log("81==", Object.values(registerData).every((val) => val !== ""))
-        if(registerData.email){
-
+        if (registerData.email) {
             navigate('/loginPage')
         }
 
@@ -92,8 +82,6 @@ setRegisterData( {...registerData, age:age})
         get.push(registerData);
         localStorage.setItem('details', JSON.stringify(get));
     }
-    // useEffect(() => {
-    // }, [registerData]);
 
     return (
         <div>
@@ -101,17 +89,17 @@ setRegisterData( {...registerData, age:age})
             <div className='registerform'>
                 <label htmlFor='firstName' className='regText'>First Name:</label> {" "}
                 <input type="text" placeholder="FirstName" name='firstName' id="firstName" value={registerData.firstName} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{fnameError}</p>
+                <p className='regErrText'>{registerError.fnameError}</p>
 
                 <label htmlFor='lastName' className='regText'>Last Name:</label>{" "}
                 <input type="text" placeholder="LastName" name='lastName' id="lastName" value={registerData.lastName} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{lnameError}</p>
+                <p className='regErrText'>{registerError.lnameError}</p>
 
                 <label className='gender regText' htmlFor='gender'>Gender:</label>
                 <input type="radio" name="gender" value="male" onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} /> MALE
                 <input type="radio" name="gender" value="female" onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} /> FEMALE
                 <input type="radio" name="gender" value="other" onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} /> OTHER
-                <p className='regErrText'>{genderError}</p>
+                <p className='regErrText'>{registerError.genderError}</p>
 
                 <label htmlFor='qualif' className="qualification regText">Qualification:</label>
                 <select name='qualification' id='qualif' value={registerData.qualification} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent}>
@@ -125,15 +113,15 @@ setRegisterData( {...registerData, age:age})
                     <option value='MCA'>MCA</option>
                     <option value='Bpharmacy'>Bpharmacy</option>
                 </select>
-                <p className='regErrText'>{qualifError}</p>
+                <p className='regErrText'>{registerError.qualifError}</p>
 
                 <label htmlFor='occupation' className='occupation regText'>Occupation:</label> {" "}
                 <input type="text" name="occupation" id="occupation" placeholder="Occupation" value={registerData.occupation} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{occupError}</p>
+                <p className='regErrText'>{registerError.occupError}</p>
 
                 <label htmlFor='dob' className='dob regText'>Date of birth:</label>
                 <input type="date" name='dob' id='dob' value={registerData.dob} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{dobError}</p>
+                <p className='regErrText'>{registerError.dobError}</p>
                 <p>
                     {registerData.dob && <> <label htmlFor='age' className='regText age'>Age:
                     </label>
@@ -143,15 +131,15 @@ setRegisterData( {...registerData, age:age})
                 </p>
                 <label htmlFor='email' className='email regText'>Email:</label>
                 <input type="email" name='email' id='email' placeholder='Email' value={registerData.email} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{emailError}</p>
+                <p className='regErrText'>{registerError.emailError}</p>
 
                 <label htmlFor='pswd' className='pswd regText'>Password:</label>
                 <input type="password" name='password' id='pswd' placeholder='Password' value={registerData.password} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{pswdError}</p>
+                <p className='regErrText'>{registerError.pswdError}</p>
 
                 <label htmlFor='address' className='address regText'>Address:</label>
                 <input type='textarea' name='address' id='address' placeholder='Address' value={registerData.address} onChange={(e) => handleRegisterData(e)} onBlur={handleBlurEvent} />
-                <p className='regErrText'>{addError}</p>
+                <p className='regErrText'>{registerError.addError}</p>
             </div>
             <div className='registerfooter'>
                 <button className='regBack' onClick={() => navigate(-1)}>Back</button>

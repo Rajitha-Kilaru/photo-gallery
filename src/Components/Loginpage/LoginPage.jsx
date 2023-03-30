@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../../Styles/LoginPage.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { loginDetails } from '../Actions/actions'
 
 function LoginPage() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const state = useSelector((state) => state.reducers)
     const [loginData, setLoginDetails] = useState({ email: "", password: "" })
     const [emailError, setEmailError] = useState()
     const [pswdError, setPswdError] = useState()
